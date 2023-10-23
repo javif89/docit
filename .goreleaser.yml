@@ -1,0 +1,32 @@
+builds:
+  - main: ./cmd/
+    binary: docit
+    goos:
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm64
+    env:
+      - CGO_ENABLED=0
+
+brews:
+  -
+    name: docit
+    homepage: https://github.com/javif89/docit
+    tap:
+      owner: javif89
+      name: homebrew-javif89
+    commit_author:
+      name: javif89
+      email: javierfelizweb@gmail.com
+    folder: Formula
+
+release:
+  prerelease: auto
+
+universal_binaries:
+  - replace: true
+
+checksum:
+  name_template: 'checksums.txt'
