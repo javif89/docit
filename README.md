@@ -18,6 +18,12 @@ I hope so
 
 ## Quickstart
 
+### Install
+
+```bash
+brew install javif89/javif89/docit
+```
+
 DocIt just needs a folder with markdown files. We'll do the rest.
 
 ```bash
