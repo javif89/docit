@@ -31,3 +31,9 @@ docit build -i ./docs -o ./build -t "My documentation"
 ```
 
 And that's it. You should now have a static site in ./build
+
+# More documentation
+
+The docs for docit were buit with docit. That way you can have an idea of what your own site will look like.
+
+### Check out the docs [here](https://javif89.github.io/docit)
