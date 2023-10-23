@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-white">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://javif89.github.io/docit-assets/dist/docit-v1.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>docs | Serve</title>
+</head>
+
+<body class="h-full">
+    <div x-data="{sidebarOpen: false}">
+        <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
+        <div x-show="sidebarOpen" class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
+            <div @click="sidebarOpen = false" class="fixed inset-0 bg-gray-900/80"></div>
+
+            <div class="fixed inset-0 flex">
+                <div class="relative mr-16 flex w-full max-w-xs flex-1">
+                    <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
+                        <button @click="sidebarOpen = false" type="button" class="-m-2.5 p-2.5">
+                            <span class="sr-only">Close sidebar</span>
+                            <svg class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Sidebar component, swap this element with another sidebar if you like -->
+                    <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-zinc-50 px-6 pb-2 ring-1 ring-white/10">
+                        <div class="flex h-16 shrink-0 items-center">
+                            <h1 class="font-black text-slate-800 text-lg">docs</h1>
+                        </div>
+                        <nav class="flex flex-1 flex-col">
+                            <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                                <li>
+                                    <ul role="list" class="-mx-2 space-y-1">
+                                        <li>
+                                            
+                                        <li>
+                                            <a href="/"
+                                                class=" text-slate-700 hover:text-slate-800 hover:bg-indigo-300  group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                                Home
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="/build"
+                                                class=" text-slate-700 hover:text-slate-800 hover:bg-indigo-300  group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                                Build
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="/serve"
+                                                class=" bg-indigo-700 text-white  group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                                Serve
+                                            </a>
+                                        </li>
+                                        
+                                </li>
+                            </ul>
+                            </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Static sidebar for desktop -->
+        <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-96 lg:flex-col">
+            <!-- Sidebar component, swap this element with another sidebar if you like -->
+            <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-zinc-50 px-6">
+                <div class="flex h-16 shrink-0 items-center">
+                    <h1 class="font-black text-slate-800 text-2xl">docs</h1>
+                </div>
+                <nav class="flex flex-1 flex-col">
+                    <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                        <li>
+                            <!-- Current: "bg-gray-800 text-white", Default: "text-gray-400 hover:text-white hover:bg-gray-800" -->
+                            <ul role="list" class="-mx-2 space-y-1">
+                                
+                                <li>
+                                    <a href="/"
+                                        class=" text-slate-700 hover:text-slate-800 hover:bg-indigo-300  group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                        Home
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href="/build"
+                                        class=" text-slate-700 hover:text-slate-800 hover:bg-indigo-300  group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                        Build
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href="/serve"
+                                        class=" bg-indigo-700 text-white  group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                        Serve
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="sticky top-0 z-40 flex items-center gap-x-6 bg-zinc-50 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
+            <button @click="sidebarOpen = true" type="button" class="-m-2.5 p-2.5 text-gray-400 lg:hidden">
+                <span class="sr-only">Open sidebar</span>
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                    aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+            <div class="flex-1 text-sm font-semibold leading-6 text-slate-800">Serve</div>
+        </div>
+
+        <main class="py-10 lg:pl-72">
+            <div class="px-4 sm:px-6 lg:px-8 lg:max-w-4xl mx-auto">
+                <div class="prose prose-zinc max-w-none">
+                    <h1 class="text-4xl font-black mb-4 border-b border-gray-300">Serve</h1>
+                    <div class="my-8">
+                        <ul id="table-of-contents"> 
+		
+		<li> <a href="#the-serve-command">  The serve command </a> </li>
+	
+		
+		<ul>
+			
+			
+		
+		<li> <a href="#basic">  Basic </a> </li>
+	
+		
+	
+			
+			
+		
+		<li> <a href="#build-and-watch">  Build and watch </a> </li>
+	
+		
+	
+			
+		</ul>
+		
+	 </ul>
+                    </div>
+                    <h1><a name="the-serve-command" class="anchor" href="#the-serve-command" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>The serve command</h1>
+
+<p>The serve command will start up a dev server so you can preview your site.</p>
+<h2><a name="basic" class="anchor" href="#basic" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Basic</h2>
+
+<div class="highlight highlight-bash"><pre>docit serve -s ./docs
+</pre></div>
+
+<p>Assuming ./docs is where your html files are being built to, this will serve your site from there.</p>
+<h2><a name="build-and-watch" class="anchor" href="#build-and-watch" rel="nofollow" aria-hidden="true"><span class="octicon octicon-link"></span></a>
+Build and watch</h2>
+
+<p>The docit serve command can take the <code>--build</code> and <code>--watch</code> flags.</p>
+
+<p>If you use <code>--build</code> you should pass the <code>-i</code> and <code>-o</code> flags same as with the build command. That way it knows where to build your site from and where to output it to. The result will be output to the path passed in the <code>-s</code> option.</p>
+
+<p>You can also pass the <code>-t</code> flag to set the site title.</p>
+
+<p><code>--watch</code> will watch the <code>-i</code> path for changes and automatically rebuild your site on updates. No hot reload yet so you&#39;ll
+have to refresh the page yourself but it&#39;s coming soon.</p>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
