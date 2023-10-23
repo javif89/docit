@@ -9,7 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"time"
-
+  "os/user"
 	"github.com/fsnotify/fsnotify"
 	"github.com/urfave/cli/v2"
 )
@@ -77,15 +77,30 @@ func main() {
 	}
 
 	// Pre flight check
-	if _, err := os.Stat("./page.html"); os.IsNotExist(err) {
+  err := os.MkdirAll(configPath(""), 0755)
+  if err != nil {
+    panic(err)
+  }
+  if _, err := os.Stat(configPath("page.html")); os.IsNotExist(err) {
 		fmt.Println("Downloading default template...")
-		downloadFile("https://raw.githubusercontent.com/javif89/docit-assets/main/dist/page-v1.html", "./page.html")
+    fmt.Println("Downloading to", configPath("page.html"))
+		downloadFile("https://raw.githubusercontent.com/javif89/docit-assets/main/dist/page-v1.html",configPath("page.html"))
 	}
 
 	// Run the app
 	if err := app.Run(os.Args); err != nil {
 		log.Fatal(err)
 	}
+}
+
+func configPath(s string) string {
+  user, err := user.Current()
+  homeDir := user.HomeDir
+  path := filepath.Join(homeDir, ".config/docit")
+  if err != nil {
+    fmt.Println("error with filepath", err)
+  }
+  return filepath.Join(path, s)
 }
 
 func downloadFile(url string, filename string) {
@@ -112,7 +127,7 @@ func downloadFile(url string, filename string) {
 
 func build(input string, output string, sitename string) {
 	start := time.Now().UnixMilli()
-	b := pagebuilder.NewBuilder("./page.html", input, output)
+	b := pagebuilder.NewBuilder(configPath("page.html"), input, output)
 	b.ProjectTitle = sitename
 	b.Build()
 	end := time.Now().UnixMilli()
